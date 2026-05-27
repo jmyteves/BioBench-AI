@@ -2,6 +2,11 @@
 
 **A 30-prompt benchmark for evaluating AI scientific reasoning in molecular biology, cell biology, stem cells, and epigenomics.**
 
+![version](https://img.shields.io/badge/version-1.0.0-1D9E75)
+![status](https://img.shields.io/badge/status-open--benchmark-0F6E56)
+![prompts](https://img.shields.io/badge/prompts-30-1D9E75)
+![license](https://img.shields.io/badge/license-MIT-0F6E56)
+
 🌐 **Live benchmark tool:** https://jmyteves.github.io/biobench-ai/  
 📄 **Scoring guide:** [rubric/scoring_guide.md](rubric/scoring_guide.md)
 
