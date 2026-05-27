@@ -1,0 +1,191 @@
+{
+  "benchmark": "BioBench AI",
+  "version": "1.0.0",
+  "description": "30-prompt benchmark evaluating AI scientific reasoning in molecular biology, cell biology, stem cells, and epigenomics",
+  "rubric_dimensions": [
+    {
+      "key": "novelty",
+      "name": "Novelty",
+      "description": "Does the model generate genuinely non-obvious hypotheses or explanations beyond textbook retrieval?",
+      "scale": "1 = retrieves known facts only | 2 = minor extrapolation | 3 = non-obvious but derivative | 4 = genuinely novel mechanistic insight"
+    },
+    {
+      "key": "tractability",
+      "name": "Tractability",
+      "description": "Are proposed experiments or approaches technically feasible and well-specified?",
+      "scale": "1 = vague or infeasible | 2 = broadly correct but underspecified | 3 = feasible with minor gaps | 4 = specific, executable, accounts for practical constraints"
+    },
+    {
+      "key": "mechanistic_depth",
+      "name": "Mechanistic Depth",
+      "description": "Does the model reason at the molecular mechanism level, not surface description?",
+      "scale": "1 = surface description only | 2 = partial mechanism | 3 = full mechanism with minor gaps | 4 = molecular-level causal chain with no hand-waving"
+    },
+    {
+      "key": "confounder_awareness",
+      "name": "Confounder Awareness",
+      "description": "Does the model identify alternative explanations, methodological limits, and caveats?",
+      "scale": "1 = ignores confounders | 2 = mentions 1 obvious caveat | 3 = identifies key confounders | 4 = systematically addresses alternatives and limits"
+    }
+  ],
+  "categories": [
+    { "id": "HG", "name": "Hypothesis Generation", "primary_dimension": "novelty" },
+    { "id": "ED", "name": "Experimental Design", "primary_dimensions": ["tractability", "confounder_awareness"] },
+    { "id": "ISD", "name": "Interpret Surprising Data", "primary_dimensions": ["mechanistic_depth", "confounder_awareness"] },
+    { "id": "CDS", "name": "Cross-Domain Synthesis", "primary_dimensions": ["novelty", "mechanistic_depth"] },
+    { "id": "CBS", "name": "Critique and Blind Spots", "primary_dimension": "confounder_awareness" },
+    { "id": "MD", "name": "Mechanistic Depth", "primary_dimension": "mechanistic_depth" }
+  ],
+  "prompts": [
+    {
+      "id": 1,
+      "category": "HG",
+      "prompt": "A transcription factor knockout in mouse ESCs causes unexpected upregulation of 200 previously silent genes. What are the three most mechanistically distinct hypotheses that could explain this result?"
+    },
+    {
+      "id": 2,
+      "category": "HG",
+      "prompt": "In a human iPSC-derived cardiomyocyte model, cells treated with a small molecule differentiation inhibitor show paradoxically enhanced maturation at low doses. Propose a mechanistic hypothesis."
+    },
+    {
+      "id": 3,
+      "category": "HG",
+      "prompt": "Single-cell RNA-seq of a regenerating tissue reveals a transient cell population co-expressing markers of two distinct lineages simultaneously. What are the most mechanistically distinct explanations for this hybrid state?"
+    },
+    {
+      "id": 4,
+      "category": "HG",
+      "prompt": "A histone deacetylase inhibitor applied to adult somatic cells transiently enables expression of embryonic genes not seen since early development. Generate the most novel mechanistic hypothesis for this reactivation."
+    },
+    {
+      "id": 5,
+      "category": "HG",
+      "prompt": "In organoid cultures, cells at the periphery spontaneously upregulate stress-response genes and show altered histone modifications without any external perturbation. What is the most mechanistically specific hypothesis for what is driving this?"
+    },
+    {
+      "id": 6,
+      "category": "ED",
+      "prompt": "You want to test whether H3K27me3 loss is necessary and sufficient for cell fate reprogramming — not merely correlated with it. Design a rigorous experiment that distinguishes causality from correlation."
+    },
+    {
+      "id": 7,
+      "category": "ED",
+      "prompt": "Design an experiment to distinguish whether a transcription factor promotes stem cell self-renewal through direct target gene activation versus chromatin remodelling at distal enhancers."
+    },
+    {
+      "id": 8,
+      "category": "ED",
+      "prompt": "A co-immunoprecipitation experiment suggests a novel interaction between a metabolic enzyme and a chromatin remodelling complex. How do you validate this interaction and establish its functional relevance in cells?"
+    },
+    {
+      "id": 9,
+      "category": "ED",
+      "prompt": "You observe that stem cells in a specific in vivo niche show dramatically different gene expression than the same cells in culture. Design a minimal experiment to identify the niche-derived factor responsible."
+    },
+    {
+      "id": 10,
+      "category": "ED",
+      "prompt": "Design an experiment to determine whether a newly identified lncRNA regulates gene expression by acting as a scaffold for chromatin regulators versus as a competitive decoy for transcription factors."
+    },
+    {
+      "id": 11,
+      "category": "ISD",
+      "prompt": "ATAC-seq reveals that chromatin accessibility at a set of enhancers increases during differentiation, but the putative target genes remain transcriptionally silenced. What are the most mechanistically distinct explanations for this uncoupling?"
+    },
+    {
+      "id": 12,
+      "category": "ISD",
+      "prompt": "CUT&RUN for a canonical polycomb repressor component shows unexpectedly strong signal at actively transcribed housekeeping genes in a specific cell type. How do you interpret this contrary to established function?"
+    },
+    {
+      "id": 13,
+      "category": "ISD",
+      "prompt": "After CRISPR deletion of a super-enhancer, the associated gene shows only mild downregulation, but 15 other genes on the same chromosome show significant expression changes. What explains the off-target transcriptional effects?"
+    },
+    {
+      "id": 14,
+      "category": "ISD",
+      "prompt": "Two cell lines derived from the same patient with identical genomes show dramatically different responses to the same differentiation protocol, despite nearly identical baseline transcriptomes. What is the most likely epigenetic explanation?"
+    },
+    {
+      "id": 15,
+      "category": "ISD",
+      "prompt": "A developmental transcription factor is reactivated in adult stem cells following tissue injury, but only in cells directly adjacent to the wound edge — not in cells 3 cell diameters away. What is the most mechanistically informative explanation?"
+    },
+    {
+      "id": 16,
+      "category": "CDS",
+      "prompt": "Recent data shows that mitochondrial dysfunction alters histone acetylation patterns genome-wide. Connect the metabolic and epigenetic mechanisms and predict the downstream cell biological consequences."
+    },
+    {
+      "id": 17,
+      "category": "CDS",
+      "prompt": "Phase separation has been observed both at transcriptional super-enhancers and at stress granules. What is the most interesting shared mechanistic principle, and what does it predict about chromatin organisation under acute cellular stress?"
+    },
+    {
+      "id": 18,
+      "category": "CDS",
+      "prompt": "Mechanical forces on cells alter both cytoskeletal organisation and gene expression. Propose a complete mechanistic chain from the initial force-sensing event at the membrane to a durable change in transcriptional output in the nucleus."
+    },
+    {
+      "id": 19,
+      "category": "CDS",
+      "prompt": "Cells undergoing replicative senescence show simultaneous changes in nuclear architecture, metabolic reprogramming, and a pro-inflammatory secretory phenotype. What is the most parsimonious mechanistic explanation linking all three?"
+    },
+    {
+      "id": 20,
+      "category": "CDS",
+      "prompt": "The gut microbiome produces short-chain fatty acids that function as HDAC inhibitors. Connect this to intestinal stem cell maintenance and predict a specific, testable consequence for chromatin state in transit-amplifying progenitors."
+    },
+    {
+      "id": 21,
+      "category": "CBS",
+      "prompt": "A study claims a single transcription factor is sufficient to convert fibroblasts to neurons based on morphology, expression of 3 marker genes by qPCR, and spontaneous action potentials. What are the critical limitations and unconsidered confounders in this conclusion?"
+    },
+    {
+      "id": 22,
+      "category": "CBS",
+      "prompt": "A paper reports that a small molecule promotes stem cell pluripotency by activating Wnt signalling, based on a TOP-flash luciferase reporter and qPCR of 5 Wnt target genes. What alternative explanations and confounders must be addressed before this conclusion is accepted?"
+    },
+    {
+      "id": 23,
+      "category": "CBS",
+      "prompt": "Researchers conclude that a nuclear lncRNA is required for heterochromatin maintenance based on a single siRNA knockdown showing H3K9me3 loss at repeat elements. Identify all methodological concerns with this conclusion."
+    },
+    {
+      "id": 24,
+      "category": "CBS",
+      "prompt": "A study uses bulk RNA-seq comparing two stem cell populations and concludes they are transcriptionally identical, and therefore functionally equivalent. What is fundamentally wrong with both the logic and the methodology of this conclusion?"
+    },
+    {
+      "id": 25,
+      "category": "CBS",
+      "prompt": "A ChIP-seq study identifies 5,000 genomic binding sites for a transcription factor and claims all sites are functional regulatory elements based on peak calling with a standard FDR threshold. What are the critical caveats?"
+    },
+    {
+      "id": 26,
+      "category": "MD",
+      "prompt": "Describe the complete molecular chain of events from a DNA double-strand break in a pluripotent stem cell to a specific change in gene expression at a locus 1 Mb away on the same chromosome."
+    },
+    {
+      "id": 27,
+      "category": "MD",
+      "prompt": "Describe the mechanistic steps by which a cell transitions from a primed to a naïve pluripotent state, focusing specifically on the ordered chromatin remodelling events rather than transcription factor changes."
+    },
+    {
+      "id": 28,
+      "category": "MD",
+      "prompt": "A growth factor binds its receptor on the surface of a stem cell. Trace the complete intracellular signalling cascade to a durable change in the histone modification state of a specific target gene promoter in the nucleus."
+    },
+    {
+      "id": 29,
+      "category": "MD",
+      "prompt": "Explain how a point mutation in a CTCF binding site within a topologically associating domain boundary could lead to ectopic gene activation in a tissue where that gene is normally permanently silenced."
+    },
+    {
+      "id": 30,
+      "category": "MD",
+      "prompt": "Describe the molecular mechanisms by which a cell undergoing acute metabolic stress transiently alters its transcriptional programme, and specifically what epigenetic memory — if any — persists after stress resolution."
+    }
+  ]
+}
